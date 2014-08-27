@@ -15,7 +15,7 @@ session = require('express-session'),
 app = express();
 
 // all environments
-app.set('port', config.PORT || 3000);
+app.set('port', config.PORT || process.env.port || 3000);
 app.use(bodyParser());
 app.use(methodOverride());
 app.use(cookieParser());
