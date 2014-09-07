@@ -10,7 +10,6 @@ sudo npm install -g grunt-cli
 sudo npm install -g node-inspector
 ```
 
-
 **Local dependencies**
 ```sh
 npm install
@@ -25,5 +24,8 @@ npm run start
 ```js
 npm run debug
 ```
+
+**Create a pre-commit git hook that runs jshint before every commit**
+grunt githook
 
 Open `localhost:3000/home` in the browser.
