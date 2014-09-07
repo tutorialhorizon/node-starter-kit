@@ -26,6 +26,8 @@ npm run debug
 ```
 
 **Create a pre-commit git hook that runs jshint before every commit**
+```sh
 grunt githook
+```
 
 Open `localhost:3000/home` in the browser.
