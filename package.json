@@ -3,23 +3,26 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "debug": "grunt debug --file=app.js"
   },
   "dependencies": {
-  	"express":"4.1.0",
-  	"body-parser":"*",
-  	"method-override":"*",
-  	"cookie-parser":"*",
-  	"express-session":"*",
-		"underscore":"*",
-		"multiparty":"*",
-    "morgan":"*",
-		"octonode":"*",
-		"async":"*",
-		"randomstring":"*",
-		"moment":"*"
+    "express": "4.1.0",
+    "body-parser": "*",
+    "method-override": "*",
+    "cookie-parser": "*",
+    "express-session": "*",
+    "underscore": "*",
+    "multiparty": "*",
+    "morgan": "*",
+    "octonode": "*",
+    "async": "*",
+    "randomstring": "*",
+    "moment": "*"
   },
-	"devDependencies":{
-		"nodemon": "*"
-	}
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-run": "^0.2.4",
+    "nodemon": "*"
+  }
 }
