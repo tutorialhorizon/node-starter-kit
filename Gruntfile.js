@@ -15,10 +15,12 @@ module.exports = function(grunt) {
   runConfigs['node-inspector'].args.unshift(grunt.option('file'));
 
   grunt.config( 'jshint', require('./grunt/jshint.js') );
+  grunt.config( 'githooks', require('./grunt/githooks.js') );
 	grunt.config( 'run', runConfigs );
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-run');
+  grunt.loadNpmTasks('grunt-githooks');
 
   grunt.registerTask('default', ['jshint']);
   grunt.registerTask('debug', ['run:node-inspector']);
