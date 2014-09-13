@@ -1,7 +1,8 @@
 node-starter-kit
 =====
 
-Simple nodejs server
+A starter kit built using nodejs/expressjs that with a number of preconfigured grunt tasks and scripts to make your life easier.
+
 ---
 
 **Global dependencies**
@@ -15,7 +16,7 @@ sudo npm install -g node-inspector
 npm install
 ```
 
-**Start your server**
+**Start your server using nodemon**
 ```js
 npm run start
 ```
@@ -28,6 +29,11 @@ npm run debug
 **Create a pre-commit git hook that runs jshint before every commit**
 ```sh
 grunt githooks
+```
+
+**Compile your scss files in public/scss to public/stylesheets**
+```sh
+npm run build-css
 ```
 
 Open `localhost:3000/home` in the browser.
