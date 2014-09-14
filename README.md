@@ -36,4 +36,9 @@ grunt githooks
 npm run build-css
 ```
 
+**Unit test your server side routes using mocha**
+```sh
+npm run tests-unit
+```
+
 Open `localhost:3000/home` in the browser.

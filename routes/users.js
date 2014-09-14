@@ -26,7 +26,7 @@ module.exports = function(app, settings){
 		res.json(users[req.params.index]);
 	});
 
-	// Get the user at an index
+	// Create a new user
 	usersRouter.post('/', function(req, res, next){
 		users.push(req.body);
 		res.json(users[users.length - 1]);
