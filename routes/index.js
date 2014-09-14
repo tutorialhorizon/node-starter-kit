@@ -1,4 +1,6 @@
 // Divide all of your modules in different files and
 // require them here
-require('./main');
-require('./home');
+module.exports = function(app, settings){
+	require('./main')(app, settings);
+	require('./home')(app, settings);
+};

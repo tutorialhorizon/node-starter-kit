@@ -1,13 +1,15 @@
-var url = require('url');
+module.exports = function(app, settings){
+	var url = require('url'),
+		express = require('express'),
+		homeRouter = express.Router();
 
-var homeRouter = express.Router();
+	homeRouter.use(function(req, res, next) {
+	  
+	  res.json({ 
+	  	message: 'Hello Node'
+	  });
 
-homeRouter.use(function(req, res, next) {
-  
-  res.json({ 
-  	message: 'Hello Node'
-  });
+	});
 
-});
-
-app.use('/home',homeRouter);
+	app.use('/home',homeRouter);
+};
