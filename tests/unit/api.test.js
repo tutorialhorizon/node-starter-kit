@@ -34,11 +34,15 @@ requireFromRoot = (function(root) {
     }
 })(ROOT_DIR);
 
-routes = require(ROOT_DIR + '/routes')(app, settings);
-
-var log = console.log;
 
 describe('#/api/users', function(){
+
+	var log = console.log;
+
+	before(function(done){
+		require(ROOT_DIR + '/routes/users')(app, settings);
+		done();
+	});
 
 	beforeEach(function(){
 
@@ -52,7 +56,7 @@ describe('#/api/users', function(){
   	request(app)
       .get('/api/users')
       .end(function(err, res){
-      	// Enable the console log
+      	// Enable the console log to print the assertion output
       	console.log = log;
       	var data = JSON.parse(res.text);
       	expect(err).to.be.null;
@@ -92,4 +96,4 @@ describe('#/api/users', function(){
       });
   });
 
-})
+});
