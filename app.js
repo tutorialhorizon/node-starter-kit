@@ -12,6 +12,9 @@ var express = require('express'),
 	methodOverride = require('method-override'),
 	cookieParser = require('cookie-parser'),
 	session = require('express-session'),
+	mw = {
+		requestlogger: require('./middleware/requestlogger')
+	},
 	app = express();
 
 
@@ -36,6 +39,8 @@ app.use(cookieParser());
 app.use(session({secret: config.SESSION_SECRET}));
 app.use(express.static(__dirname + '/public'));
 
+// Our custom middleware
+app.use(mw.requestlogger);
 
 //This allows you to require files relative to the root http://goo.gl/5RkiMR
 requireFromRoot = (function(root) {

@@ -3,12 +3,9 @@ module.exports = function(app, settings){
 		express = require('express'),
 		rootRouter = express.Router();
 
-	// Logic that is common to all the routes
+	// Any generic logic can go here
 	rootRouter.use(function(req, res, next) {
-	  
-	  console.log(req.method + ':' + req.originalUrl); // Basic logging for all the routes
-	  next();
-
+		next();
 	});
 
 	app.use('/',rootRouter);
