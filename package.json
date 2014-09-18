@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "express": "4.1.0",
-    "body-parser": "*",
+    "body-parser": "^1.6.5",
     "method-override": "*",
     "cookie-parser": "*",
     "express-session": "*",

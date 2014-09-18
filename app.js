@@ -27,7 +27,10 @@ var settings = {
 
 // all environments
 app.set('port', config.PORT || process.env.port || 3000);
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cookieParser());
 app.use(session({secret: config.SESSION_SECRET}));
