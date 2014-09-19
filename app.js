@@ -36,7 +36,11 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cookieParser());
-app.use(session({secret: config.SESSION_SECRET}));
+app.use(session({
+	secret: config.SESSION_SECRET,
+	saveUninitialized: true,
+	resave: true
+}));
 app.use(express.static(__dirname + '/public'));
 
 // Our custom middleware
