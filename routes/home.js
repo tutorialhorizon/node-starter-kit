@@ -6,7 +6,7 @@ module.exports = function(app, settings){
 	homeRouter.use(function(req, res, next) {
 	  
 	  res.json({ 
-	  	message: 'Hello Node'
+	  	message: 'Welcome Home'
 	  });
 
 	});

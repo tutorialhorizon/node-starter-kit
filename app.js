@@ -29,7 +29,8 @@ require('./config/passport')(passport); // pass passport for configuration
 // and also help in testing since you can inject
 // any configuration you wish to test
 var settings = {
-	config: config
+	config: config,
+	passport: passport
 	//, knex: knex
 };
 
