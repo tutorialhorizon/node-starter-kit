@@ -1,4 +1,7 @@
-var LocalStrategy   = require('passport-local').Strategy;
+var LocalStrategy   = require('passport-local').Strategy,
+  GitHubStrategy = require('passport-github').Strategy;
+
+var oauthSettings = require('../ignore/oauthSettings');
 
 // Create a sample user for demo purpose
 var sampleUser = {
@@ -11,19 +14,13 @@ module.exports = function (passport) {
 
 	passport.serializeUser(function(user, done) {
     console.log('Serializing user');
-    done(null, user.id);
+    done(null, user);
   });
 
   // Used to deserialize the user
-  passport.deserializeUser(function(id, done) {
+  passport.deserializeUser(function(user, done) {
     console.log('Deserializing user');
-    if(id === sampleUser.id) {
-      done(null, sampleUser);
-    } else {
-      done({
-        message: 'Error deserializing user'
-      });
-    }
+    done(null, user);
   });
 
   passport.use('local-login', new LocalStrategy({
@@ -42,5 +39,23 @@ module.exports = function (passport) {
       done(null, false, req.flash('message', 'Invalid email or password'));
     }
   }));
+
+  passport.use(new GitHubStrategy({
+      clientID: oauthSettings.github.clientID,
+      clientSecret: oauthSettings.github.clientSecret,
+      callbackURL: "http://localhost:3000/auth/github/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+      // asynchronous verification, for effect...
+      process.nextTick(function () {
+        
+        // To keep the example simple, the user's GitHub profile is returned to
+        // represent the logged-in user.  In a typical application, you would want
+        // to associate the GitHub account with a user record in your database,
+        // and return that user instead.
+        return done(null, profile);
+      });
+    }
+  ));
 
 };

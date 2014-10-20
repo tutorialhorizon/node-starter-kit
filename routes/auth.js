@@ -21,6 +21,19 @@ module.exports = function(app, settings){
 		res.redirect('/home');
 	});
 
+	router.get('/auth/github',passport.authenticate('github'));
+
+	// GET /auth/github/callback
+  // Use passport.authenticate() as route middleware to authenticate the
+  // request.  If authentication fails, the user will be redirected back to the
+  // login page.  Otherwise, the primary route function function will be called,
+  // which, in this example, will redirect the user to the home page.
+	app.get('/auth/github/callback', 
+	  passport.authenticate('github', { failureRedirect: '/login.html' }),
+	  function(req, res) {
+	    res.redirect('/profile');
+	  });
+
 	function isLoggedIn(req, res, next) {
 		if (req.isAuthenticated())
 			return next();

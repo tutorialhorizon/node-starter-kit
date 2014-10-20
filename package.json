@@ -16,6 +16,7 @@
     "method-override": "^2.2.0",
     "multiparty": "^3.3.2",
     "passport": "^0.2.1",
+    "passport-github": "^0.1.5",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
