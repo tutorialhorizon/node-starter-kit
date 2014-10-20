@@ -17,6 +17,11 @@ var express = require('express'),
 	},
 	app = express();
 
+var passport = require('passport'),
+	flash = require('connect-flash');
+
+require('./config/passport')(passport); // pass passport for configuration
+
 
 // Object that stores application level settings
 // that are used by the routes
@@ -42,6 +47,12 @@ app.use(session({
 	resave: true
 }));
 app.use(express.static(__dirname + '/public'));
+
+// Authentication setup using Passport
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+// ---
 
 // Our custom middleware
 app.use(mw.requestlogger);
