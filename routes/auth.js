@@ -21,7 +21,9 @@ module.exports = function(app, settings){
 		res.redirect('/home');
 	});
 
-	router.get('/auth/github',passport.authenticate('github'));
+	router.get('/auth/github',passport.authenticate('github', { scope : 'email' }));
+
+	router.get('/auth/facebook',passport.authenticate('facebook', { scope : 'email' }));
 
 	// GET /auth/github/callback
   // Use passport.authenticate() as route middleware to authenticate the
@@ -31,6 +33,14 @@ module.exports = function(app, settings){
 	app.get('/auth/github/callback', 
 	  passport.authenticate('github', { failureRedirect: '/login.html' }),
 	  function(req, res) {
+	  	console.log('Github OAuth Callback');
+	    res.redirect('/profile');
+	  });
+
+	app.get('/auth/facebook/callback',
+	  passport.authenticate('facebook', { failureRedirect: '/login.html' }),
+	  function(req, res) {
+	  	console.log('Facebook OAuth Callback');
 	    res.redirect('/profile');
 	  });
 

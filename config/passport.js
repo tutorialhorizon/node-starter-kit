@@ -1,5 +1,6 @@
 var LocalStrategy   = require('passport-local').Strategy,
-  GitHubStrategy = require('passport-github').Strategy;
+  GitHubStrategy = require('passport-github').Strategy,
+  FacebookStrategy = require('passport-facebook').Strategy;
 
 var oauthSettings = require('../ignore/oauthSettings');
 
@@ -67,10 +68,52 @@ module.exports = function (passport) {
         // profile.gists_url;
         // profile.blog; //
         // profile.html_url; // Full URL of the user's github profile
+        console.log(profile);
+        return done(null, profile);
+      });
+    }
+  ));
+
+
+  // The most important function
+  // The callback of this function gets invoked once 
+  // the user grants permission to your application
+  passport.use(new FacebookStrategy({
+      clientID: oauthSettings.facebook.clientID,
+      clientSecret: oauthSettings.facebook.clientSecret,
+      callbackURL: "http://localhost:3000/auth/facebook/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+      // asynchronous verification, for effect...
+      process.nextTick(function () {
+        
+        // To keep the example simple, the user's GitHub profile is returned to
+        // represent the logged-in user. In a typical application, you would want
+        // to associate the GitHub account with a user record in your database,
+        // and return that user instead.
+        
+        console.log(profile);
+        // Important fields in the profile
+        // {
+        //   id: 'numeric id',
+        //   email: 'email@example.com',
+        //   first_name: 'asd',
+        //   gender: 'gender',
+        //   last_name: 'lname',
+        //   link: 'https://www.facebook.com/app_scoped_user_id/numeric_id/',
+        //   locale: 'en_US',
+        //   name: 'Full Name',
+        //   timezone: -7,
+        //   updated_time: '2014-10-20T05:52:58+0000',
+        //   verified: true } 
+        // }
+
 
         return done(null, profile);
       });
     }
   ));
+
+
 
 };
