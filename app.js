@@ -20,7 +20,7 @@ var express = require('express'),
 var passport = require('passport'),
 	flash = require('connect-flash');
 
-require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport);
 
 
 // Object that stores application level settings

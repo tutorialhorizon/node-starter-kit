@@ -40,6 +40,9 @@ module.exports = function (passport) {
     }
   }));
 
+  // The most important function
+  // The callback of this function gets invoked once 
+  // the user grants permission to your application
   passport.use(new GitHubStrategy({
       clientID: oauthSettings.github.clientID,
       clientSecret: oauthSettings.github.clientSecret,
@@ -53,6 +56,18 @@ module.exports = function (passport) {
         // represent the logged-in user.  In a typical application, you would want
         // to associate the GitHub account with a user record in your database,
         // and return that user instead.
+        
+        // Important fields in the profile
+        // profile.email; // can be null
+        // profile.id; // Numeric user id
+        // profile.login; // Username
+        // profile.company;
+        // profile.location; 
+        // profile.repos_url;
+        // profile.gists_url;
+        // profile.blog; //
+        // profile.html_url; // Full URL of the user's github profile
+
         return done(null, profile);
       });
     }
