@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Login</title>
+    <script src="//polyfill.io"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .login {
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: 40%;
+        transform: translateY(-50%);
+        border: 1px solid #dadada;
+        padding: 20px;
+        overflow: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login">
+      <form role="form" action="/auth/local-login" method="post">
+        <div>Login</div>
+        <br/>
+        <div className="form-group">
+          <label for="exampleInputEmail1">
+            Email
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            name="email"
+            placeholder="Enter email" />
+        </div>
+        <div className="form-group">
+          <label for="exampleInputPassword1">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            name="password"
+            placeholder="Password" />
+        </div>
+        <button type="submit" className="btn btn-default pull-right">Submit</button>
+      </form>
+    </div>
+  </body>
+
+</html>

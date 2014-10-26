@@ -2,5 +2,6 @@
 // require them here
 module.exports = function(app, settings){
 	require('./main')(app, settings);
-	require('./home')(app, settings);
+	require('./auth')(app, settings);
+  require('./home')(app, settings);
 };

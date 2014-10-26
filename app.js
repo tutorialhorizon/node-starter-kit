@@ -17,6 +17,16 @@ var express = require('express'),
 	},
 	app = express();
 
+// --- Authentication ---
+var passport = require('passport'),
+  flash = require('connect-flash');
+
+require('./config/passport')(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+// --------
 
 // Object that stores application level settings
 // that are used by the routes
@@ -24,8 +34,8 @@ var express = require('express'),
 // and also help in testing since you can inject
 // any configuration you wish to test
 var settings = {
-	config: config
-	//, knex: knex
+	config: config,
+	passport: passport
 };
 
 // all environments
