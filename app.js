@@ -17,27 +17,6 @@ var express = require('express'),
 	},
 	app = express();
 
-// --- Authentication ---
-var passport = require('passport'),
-  flash = require('connect-flash');
-
-require('./config/passport')(passport);
-
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
-// --------
-
-// Object that stores application level settings
-// that are used by the routes
-// This avoids the need to create global variables
-// and also help in testing since you can inject
-// any configuration you wish to test
-var settings = {
-	config: config,
-	passport: passport
-};
-
 // all environments
 app.set('port', config.PORT || process.env.port || 3000);
 app.use(bodyParser.urlencoded({
@@ -55,16 +34,38 @@ app.use(express.static(__dirname + '/public'));
 
 // Our custom middleware
 app.use(mw.requestlogger);
+// ---
+
+// --- Authentication ---
+var passport = require('passport'),
+  flash = require('connect-flash');
+
+require('./config/passport')(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+// --------
 
 //This allows you to require files relative to the root http://goo.gl/5RkiMR
 requireFromRoot = (function(root) {
     return function(resource) {
-        return require(root+"/"+resource);
+        return require(root + "/" + resource);
     }
 })(__dirname);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+// Object that stores application level settings
+// that are used by the routes
+// This avoids the need to create global variables
+// and also help in testing since you can inject
+// any configuration you wish to test
+var settings = {
+  config: config,
+  passport: passport
+};
 
 routes = require('./routes')(app, settings);
